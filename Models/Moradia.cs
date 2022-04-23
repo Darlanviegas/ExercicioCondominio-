@@ -9,15 +9,28 @@ namespace Exercicio_Aluguel.Models
         protected int QuantidadeDeQuartos { get; set; }
         protected List<Morador> Moradores { get; set; }
 
-        public double CalcularValor()
+        public Moradia(string endereco, int cep, double tamanhoemmetros, int quantidadedebanheiros, int quantidadedequartos)
+        {
+            Endereco = endereco;
+            CEP = cep;
+            TamanhoEmMetros = tamanhoemmetros;
+            QuantidadeDeBanheiros = quantidadedebanheiros;
+            QuantidadeDeQuartos = quantidadedequartos;
+            Moradores = new List<Morador>();
+        }
+
+        public virtual double CalcularValorAluguel()
         {
             return 0;
         }
 
-        public void AdicionarMoradores(List<Morador> Moradores)
+        public void AdicionarMorador(Morador morador)
         {
-            List<Morador> Morador1 = new List<Morador>;
-
+            Moradores.Add(morador);
+        }
+        public void RemoverMorador(string cpf)
+        {
+            Moradores.RemoveAll(morador => morador.GetCPF() == cpf);
         }
     }
 }
